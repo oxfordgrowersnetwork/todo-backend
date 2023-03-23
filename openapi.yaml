@@ -1,0 +1,35 @@
+    swagger: "2.0"
+    info:
+      title: "garden-tasks"
+      description: "Garden tasks API"
+      version: "0.1.0"
+    schemes:
+      - "https"
+    paths:
+      "/addTask":
+        post:
+          description: "Post a new task"
+          operationId: "addTask"
+          x-google-backend:
+            address: https://add-task-iz4j3tfdha-nw.a.run.app
+          parameters:
+            - name: taskToAdd
+              in: body
+              description: The task to add
+              schema:
+                type: object
+                required:
+                - project
+                - task-name
+                properties:
+                  project:
+                    type: string
+                  task-name:
+                    type: string
+          responses:
+            200:
+              description: "Success."
+              schema:
+                type: string
+            400:
+              description: "The IATA code is invalid or missing."
