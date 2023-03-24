@@ -13,4 +13,4 @@ def test_build_firestore_write():
 
 def test_build_firestore_write_with_non_json_request():
     with pytest.raises(ValueError):
-        data_to_write = build_firestore_write(None)
+        build_firestore_write(None)
