@@ -5,7 +5,7 @@ import functions_framework
 import garden_todo_backend.add_task.add_task
 
 
-# Deploy command: gcloud functions deploy add-task --gen2 --region europe-west2 --runtime python311 --source . --entry-point add_task_request
+# Deploy command: gcloud functions deploy add-task --gen2 --region europe-west2 --runtime python311 --source . --entry-point add_task_request # noqa: E501
 
 
 @functions_framework.http
