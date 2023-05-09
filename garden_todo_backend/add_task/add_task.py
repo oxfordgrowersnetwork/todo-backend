@@ -1,6 +1,7 @@
 from firebase_admin import firestore
 
-from garden_todo_backend.core.task import GardenTask
+from garden_todo_backend.core.task import Recurrence
+from garden_todo_backend.core.task import Task
 
 PROJECT_KEY = 'project'
 TASK_NAME_KEY = 'task-name'
@@ -35,6 +36,15 @@ def write_to_firestore(data_to_write: FirestoreWrite):
     project_collection.document(data_to_write.document_name).set(data_to_write.data)
 
 
+def write_to_firestore_unlabelled(data_to_write: FirestoreWrite):
+    db = firestore.client()
+
+    project_collection = get_project(db, data_to_write.collection_name)
+    new_task_document = project_collection.document()
+    new_task_document.set(data_to_write.data)
+    return new_task_document
+
+
 def get_project_key_from_json(json_object):
     if PROJECT_KEY not in json_object:
         raise ValueError(f'Missing essential information: {PROJECT_KEY}')
@@ -44,7 +54,7 @@ def get_project_key_from_json(json_object):
 def get_task_from_json(json_object):
     if TASK_NAME_KEY not in json_object:
         raise ValueError(f'Missing essential information: {TASK_NAME_KEY}')
-    return GardenTask(json_object[TASK_NAME_KEY])
+    return Task(json_object[TASK_NAME_KEY], set(range(0, 12)), Recurrence.NEVER)
 
 
 def get_project(firebase_db, project):
