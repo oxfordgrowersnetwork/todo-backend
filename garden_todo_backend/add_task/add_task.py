@@ -1,6 +1,6 @@
 from firebase_admin import firestore
 
-from garden_todo_backend.core.task import GardenTask
+from garden_todo_backend.core.task import Task
 
 PROJECT_KEY = 'project'
 TASK_NAME_KEY = 'task-name'
@@ -44,7 +44,7 @@ def get_project_key_from_json(json_object):
 def get_task_from_json(json_object):
     if TASK_NAME_KEY not in json_object:
         raise ValueError(f'Missing essential information: {TASK_NAME_KEY}')
-    return GardenTask(json_object[TASK_NAME_KEY])
+    return Task(json_object[TASK_NAME_KEY])
 
 
 def get_project(firebase_db, project):
