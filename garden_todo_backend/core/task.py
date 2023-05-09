@@ -18,7 +18,7 @@ class Task:
     def __init__(self, task_name, enabledMonths: set[int], recurrence: Recurrence):
         self.task_name = task_name
         self.enabled_months = enabledMonths
-        self.recurrence = recurrence
+        self.recurrence = recurrence.name
         self.last_completed = None
 
     def to_json(self):
