@@ -36,6 +36,15 @@ def write_to_firestore(data_to_write: FirestoreWrite):
     project_collection.document(data_to_write.document_name).set(data_to_write.data)
 
 
+def write_to_firestore_unlabelled(data_to_write: FirestoreWrite):
+    db = firestore.client()
+
+    project_collection = get_project(db, data_to_write.collection_name)
+    new_task_document = project_collection.document()
+    new_task_document.set(data_to_write.data)
+    return new_task_document
+
+
 def get_project_key_from_json(json_object):
     if PROJECT_KEY not in json_object:
         raise ValueError(f'Missing essential information: {PROJECT_KEY}')
