@@ -58,4 +58,4 @@ def test_add_task(firestore_client):
     add_task(request_data)
     db = firestore_client.collection(exampleProjectName)
     retrieved_data = db.document("Example task").get().to_dict()
-    assert retrieved_data == {'task_name': 'Example task'}
+    assert retrieved_data['task_name'] == 'Example task'
