@@ -30,14 +30,14 @@ jobs:
         pip install flake8 pytest
         pip install -r requirements.txt
         pip install -r tests/requirements.txt
-      - name: Lint with flake8
-        run: |
-          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
-      - name: Test with pytest
-        run: |
-          firebase emulators:exec --project garden-todo-380709 pytest
-      - name: Cache emulators
-        uses: actions/cache@v3
-        with:
-          path: /home/runner/.cache/firebase/emulators
+    - name: Lint with flake8
+      run: |
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
+    - name: Test with pytest
+      run: |
+        firebase emulators:exec --project garden-todo-380709 pytest
+    - name: Cache emulators
+      uses: actions/cache@v3
+      with:
+        path: /home/runner/.cache/firebase/emulators
