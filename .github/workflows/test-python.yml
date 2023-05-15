@@ -26,7 +26,7 @@ jobs:
     - name: Cache emulators
       uses: actions/cache@v3
       with:
-        key: ${{ runner.os }}-build-fb-emulators-${{ hashFiles('/home/runner/.cache/firebase/emulators/*.jar') }}
+        key: ${{ runner.os }}-build-fb-emulators-${{ hashFiles('**/firebase/emulators/*.jar') }}
         path: /home/runner/.cache/firebase/emulators
     - name: Install dependencies
       run: |
