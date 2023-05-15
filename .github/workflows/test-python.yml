@@ -28,6 +28,18 @@ jobs:
       with:
         key: ${{ runner.os }}-build-fb-emulators-${{ hashFiles('**/firebase/emulators/*.jar') }}
         path: /home/runner/.cache/firebase/emulators
+    - name: Cache python dependencies
+      uses: actions/cache@v3
+      with:
+        path: /home/runner/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    - name: Cache npm dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm # npm dependency is fixed - just the firebase tools
+        key: ${{ runner.os }}-npm
     - name: Install dependencies
       run: |
         npm install -g firebase-tools # for the emulators
