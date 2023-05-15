@@ -30,7 +30,7 @@ class FirestoreWrite:
 
 
 def write_to_firestore(data_to_write: FirestoreWrite):
-    db = firestore.client()
+    db = firestore.Client()
 
     project_collection = get_project(db, data_to_write.collection_name)
     project_collection.document(data_to_write.document_name).set(data_to_write.data)

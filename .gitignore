@@ -1,8 +1,5 @@
 /venv/**
 /.firebaserc
 /.gcloudignore
-/firebase.json
 /firebase-debug.log
-/firestore.indexes.json
-/firestore.rules
 /firestore-debug.log
